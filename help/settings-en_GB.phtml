@@ -18,20 +18,47 @@
     <p>The сustomizing widget form can be called from <a href="<?= $url('index', 'extension:rg.be.config.desk') ?>">Configuration panel</a> or from  <a href="<?= $url('index', 'extension:rg.be.mp.wmanager') ?>">Widgets manager</a>.</p>
     <h2>Form fields</h2>
     <ul class="g-help-list">
-        <li><b>JPEG quality.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Foreground color.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Background color.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Image view.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Title (site name).</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Without spaces.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Path to fonts.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Line length.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Alphabet.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Allowed characters.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Oscillation amplitude.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>No white noise.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>No black noise.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Size / Width.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Size / Height.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>JPEG Quality.</b> This parameter determines the degree of compression applied to the CAPTCHA image. It is typically specified as a value from 1 to 100 (where 100 represents maximum quality with minimal compression).<br>
+        This setting balances character clarity against file size: at high quality (85–100), letters and numbers remain clearly legible, though the file size increases. At low quality (30–60), the file size is smaller, but compression artifacts may cause the characters to become blurry—making them harder for users to read and potentially reducing the reliability of the verification process.<br>
+        For CAPTCHAs, it is best to avoid very low values; a quality setting in the 75–90 range is generally optimal, ensuring that characters remain legible without resulting in an unnecessarily large file.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Foreground Color.</b> The color of the CAPTCHA characters is defined using a hexadecimal (HEX) code, such as #FF5733.<br>
+        The format is case-insensitive (both #FFFFFF and #ffffff are acceptable).<br>
+        The value must conform to the CSS color standard, using either a 3-character (#RGB) or 6-character (#RRGGBB) code.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Background color.</b> The background color of the CAPTCHA is specified in hexadecimal (HEX) format, for example, #FF5733.<br>
+        Case does not matter (both #FFFFFF and #ffffff are acceptable).<br>
+        The value must comply with the CSS color standard: a 3-character (#RGB) or 6-character (#RRGGBB) code.</li>
+        <li><span class="g-help-fld g-help-fld_combo"></span> <b>Image type.</b> This parameter determines the format of the output CAPTCHA image. Supported values: JPEG, PNG, GIF.<br>
+        Format details:<br>
+        <ul>
+            <li><b>JPEG</b> – lossy compression, does not support transparency; suitable for photorealistic or noisy images;</li>
+            <li><b>PNG</b> – lossless compression, supports an alpha channel (transparency); preferred for crisp character rendering and for overlaying onto an arbitrary background;</li>
+            <li><b>GIF</b> – indexed palette, supports animation and simple transparency; use with caution due to a limited color gamut and potential reduction in character legibility.</li>
+        </ul>
+        PNG is used by default. 
+        </li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>Label (site name).</b> If this box is checked, a label displaying your site's name (e.g., mysite.com) will appear below the CAPTCHA image. By default, this label is hidden.</li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>No spaces.</b> If this box is checked, the CAPTCHA characters will appear as a continuous string, with no gaps between the letters and numbers.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Path to fonts.</b> This parameter specifies the local path where the font files used to render the CAPTCHA characters are stored. The default value is "Fonts".</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>String length.</b> This parameter defines the allowed length of the CAPTCHA string; specify the minimum and maximum number of characters, separated by a hyphen. For example, "4-6" means the CAPTCHA will contain between 4 and 6 characters (a random number within this range).<br>
+        The default is typically 5–7 or a similar value—the exact setting depends on your specific system.<br>
+        When to adjust: change this if you want to make the CAPTCHA simpler (shorter) for mobile users, or more complex (longer) for higher security requirements. Avoid setting an overly broad range (e.g., 3–10), as long strings are harder to read, while very short strings are more susceptible to automated guessing.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Alphabet.</b> This parameter defines the set of characters the system will use to construct the CAPTCHA. You can include both letters and digits—these are the characters that will appear in the image.<br>
+        How to use: list the desired characters consecutively, without any spaces or delimiters.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Allowed characters.</b> This parameter defines the set of characters from which the system will randomly assemble the CAPTCHA text.<br>
+        You can include letters and digits here; these are the characters that will be displayed in the image.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Oscillation amplitude.</b> This parameter determines the extent to which the CAPTCHA characters "shake" or shift from their baseline position—this makes it more difficult for bots to automatically parse the image. The value is specified as a number: the higher the value, the more pronounced the oscillation.<br>
+        For example, a value of 5 causes the characters to sway slightly, while a value of 20 results in noticeable shifts up, down, left, and right.<br>
+        The default is a moderate value (typically 8–12), which provides a good balance between security and readability.<br>
+        Avoid setting the value too high: if the characters overlap excessively or become too scattered, users will find them difficult to recognize. Conversely, if the value is set too low, the protection against bots will be weakened.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>White noise.</b> This parameter sets the level of white noise in the CAPTCHA image—the "grainy" dots that make it difficult for bots to recognize the characters. The value is specified as a fraction or decimal (e.g., 1/4 or 0.25), indicating that approximately 25% of the image's pixels are covered by noise.<br>
+        A higher value increases the amount of noise, making the CAPTCHA harder for bots to decipher—but also more difficult for humans to read. If the value is set too high (e.g., 1/2 or greater), the characters may "dissolve" into the noise, leading to user errors. The default setting is a moderate value (typically around 1/10), which provides a good balance between security and readability.</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Black noise.</b> This parameter sets the level of black noise in the CAPTCHA—small dark dots that hinder bots from recognizing the characters. Specify the proportion of noisy pixels as a fraction, for example, 1/70.</li>
+    </ul>
+
+    <h3>Size</h3>
+    <p>The CAPTCHA image size refers to the dimensions of the image containing the verification code: its width and height in pixels.</p>
+    <ul class="g-help-list">
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Width.</b> The width of the CAPTCHA image in pixels;</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Height.</b> The height of the CAPTCHA image in pixels.</li>
     </ul>
 </article>
