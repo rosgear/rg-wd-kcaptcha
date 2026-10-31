@@ -12,7 +12,7 @@ namespace Rg\Widget\KCaptcha;
 use Ge;
 use Ge\Helper\Html;
 use Ge\View\WidgetResourceTrait;
-use Ge\Widget\KCaptcha\Provider\KCaptcha;
+use Rg\Widget\KCaptcha\Provider\KCaptcha;
 
 /**
  * Виджет "KCaptcha".
@@ -91,12 +91,15 @@ class Widget extends \Ge\View\Widget
         Ge::$app->session->set('kcaptcha', $captcha->getKey());
 
         // если необходимо использовать тег изображения
-        if ($this->settings->toHtml)
+        if ($this->settings->toHtml) {
             echo Html::img($captcha->renderEncode(), [], false);
-        else
+            return null;
+        } else
         if ($this->settings->toString)
             return $captcha->renderToString();
-        else
+        else {
             $captcha->render();
+            return null;
+        }
     }
 }
