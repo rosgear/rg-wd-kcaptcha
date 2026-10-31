@@ -2,7 +2,7 @@
 /**
  * Этот файл является частью виджета веб-приложения RosGear.
  * 
- * @link https://rosgear.ru//framework/
+ * @link https://rosgear.ru/
  * @copyright Copyright (c) 2015 RosGear
  * @license https://rosgear.ru/license/
  */
@@ -46,7 +46,7 @@ class KCaptcha
     /**
      * Конструктор класса.
      * 
-     * @param Ge\Config $config конфигурация капчи
+     * @param \Ge\Config\Config $config конфигурация капчи
 	 * 
      * @return void
      */
@@ -88,7 +88,7 @@ class KCaptcha
     { 
         $foregroundColor      = Image::hexToRgb($this->config->foregroundColor);
         $backgroundColor      = Image::hexToRgb($this->config->backgroundColor);
-        $showCredits          = $this->config->get('showСredits', false);
+        $showCredits          = $this->config->getValue('showСredits', false);
         $credits              = $this->config->get('credits');
         $noSpaces             = $this->config->get('noSpaces');
         $width                = $this->config->get('width');
